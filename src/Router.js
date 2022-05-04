@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen"
+import LoginScreen from "./screens/LoginScreen"
+import SignUpScreen from "./screens/SignUpScreen"
 import FavoritesScreen from "./screens/FavoritesScreen"
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -26,6 +28,9 @@ const Stack = createStackNavigator();
 const Router = ({ }) => {
     const { width, height } = Dimensions.get("window")
 
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.login.isLogin)
+
     function HomeStack() {
         return (
             <Stack.Navigator initialRouteName="HomeScreen">
@@ -48,6 +53,16 @@ const Router = ({ }) => {
         );
     }
 
+
+    function LoginStack() {
+        return (
+            <Stack.Navigator initialRouteName="LoginScreen">
+                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
+                <Stack.Screen component={SignUpScreen} name="SignUpScreen" options={{headerShown:false}} />
+            </Stack.Navigator>
+        );
+    }
+
     function TabNavigator() {
         return (
             <Tab.Navigator
@@ -56,6 +71,8 @@ const Router = ({ }) => {
             inactiveColor={'grey'}
             barStyle={{ backgroundColor: '#fff' }}>
 
+{isLogin === false ?
+            <>
             <Tab.Screen name="Anasayfa" component={HomeStack}
                 options={{
                     tabBarIcon: ({ color }) => (
@@ -70,13 +87,42 @@ const Router = ({ }) => {
                     ),
                 }}
             />
-                 <Tab.Screen name="Profil" component={ProfileStack}
+                 <Tab.Screen name="Giriş" component={LoginStack}
                 options={{
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name="user" color={color} size={20} />
                     ),
                 }}
             />
+            </> 
+            :
+            <>
+            <Tab.Screen name="Anasayfa" component={HomeStack}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome name="home" color={color} size={20} />
+                    ),
+                }}
+            />
+                 <Tab.Screen name="Favoriler" component={FavoritesStack}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome name="heart" color={color} size={20} />
+                    ),
+                }}
+            />
+                   <Tab.Screen name="Profil" component={ProfileStack}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome name="user" color={color} size={20} />
+                    ),
+                }}
+            />
+      
+
+            </>
+            
+             }
 
         </Tab.Navigator>
         )
