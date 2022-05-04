@@ -274,6 +274,8 @@ const [password,setPassword]= useState("");
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#012a4a",
+        
     },
     innerContainer: {
         flex: 1,

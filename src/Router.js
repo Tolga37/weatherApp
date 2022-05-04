@@ -34,14 +34,18 @@ const Router = ({ }) => {
     function HomeStack() {
         return (
             <Stack.Navigator initialRouteName="HomeScreen">
-                <Stack.Screen component={HomeScreen} name="Piyasa"  />
+                <Stack.Screen component={HomeScreen} name="Anasayfa" options={{headerTintColor:"white", headerStyle:{
+                    backgroundColor:"#ffb700"
+                }}}  />
             </Stack.Navigator>
         );
     }
     function FavoritesStack() {
         return (
             <Stack.Navigator initialRouteName="FavoritesScreen">
-                <Stack.Screen component={FavoritesScreen} name="Favorites"  />
+                <Stack.Screen component={FavoritesScreen} name="Favoriler" options={{headerTintColor:"white", headerStyle:{
+                    backgroundColor:"#ffb700"
+                }}}  />
             </Stack.Navigator>
         );
     }

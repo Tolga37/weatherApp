@@ -9,19 +9,23 @@ export default function HomeScreen() {
     FontAwesome.loadFont();
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Piyasa</Text>
+            <Text style={styles.title}>Genel Hava Durumu</Text>
         </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#012a4a",
+        alignItems:"center",
+        justifyContent:"center"
+        
     },
     title: {
-        fontSize: 20,
+        fontSize: 25,
         margin: 10,
         fontWeight: 'bold',
-        color: '#e63946'
+        color: 'white'
     }
 
 });
