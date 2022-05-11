@@ -34,7 +34,7 @@ const Router = ({ }) => {
     function HomeStack() {
         return (
             <Stack.Navigator initialRouteName="HomeScreen">
-                <Stack.Screen component={HomeScreen} name="Anasayfa" options={{headerTintColor:"white", headerStyle:{
+                <Stack.Screen component={HomeScreen} name="hava durumu" options={{headerTintColor:"white", headerStyle:{
                     backgroundColor:"#ffb700"
                 }}}  />
             </Stack.Navigator>
@@ -43,7 +43,7 @@ const Router = ({ }) => {
     function FavoritesStack() {
         return (
             <Stack.Navigator initialRouteName="FavoritesScreen">
-                <Stack.Screen component={FavoritesScreen} name="Favoriler" options={{headerTintColor:"white", headerStyle:{
+                <Stack.Screen component={FavoritesScreen} name="Favori" options={{headerTintColor:"white", headerStyle:{
                     backgroundColor:"#ffb700"
                 }}}  />
             </Stack.Navigator>
@@ -52,7 +52,9 @@ const Router = ({ }) => {
     function ProfileStack() {
         return (
             <Stack.Navigator initialRouteName="ProfileScreen">
-                <Stack.Screen component={ProfileScreen} name="Profile"  />
+                <Stack.Screen component={ProfileScreen} name="Profl" options={{headerTintColor:"white", headerStyle:{
+                    backgroundColor:"#ffb700"
+                }}} />
             </Stack.Navigator>
         );
     }

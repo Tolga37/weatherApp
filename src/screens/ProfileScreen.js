@@ -20,8 +20,9 @@ export default function HomeScreen() {
       }
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Profile</Text>
+            <Text style={styles.title}>Kullanıcı Profili</Text>
             <Button
+            color="red"
             title="ÇIKIŞ YAP"
             onPress={() => logout()} />
         </SafeAreaView>
@@ -30,12 +31,16 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#012a4a",
+        alignItems:"center",
+        justifyContent:"center"
+        
     },
     title: {
-        fontSize: 20,
+        fontSize: 25,
         margin: 10,
         fontWeight: 'bold',
-        color: '#e63946'
+        color: 'white'
     }
 
 });

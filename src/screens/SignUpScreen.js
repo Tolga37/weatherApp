@@ -237,7 +237,7 @@ const [password,setPassword]= useState("");
                     <>
                         <SafeAreaView style={styles.root}>
                             <Text style={styles.title}>Doğrulama</Text>
-                            <Image style={styles.icon} source={source} />
+               
                             <Text style={styles.subTitle}>
                                 Lütfen doğrulama kodunu giriniz..
                             </Text>
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingTop: 50,
-        color: '#000',
+        color: '#fff',
         fontSize: 25,
         fontWeight: '700',
         textAlign: 'center',
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         paddingTop: 30,
-        color: '#000',
+        color: '#fff',
         textAlign: 'center',
     },
     nextButton: {
