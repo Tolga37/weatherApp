@@ -16,6 +16,7 @@ import {
     useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import { login } from '../redux/actions/loginActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const CELL_SIZE = 50;
 export const CELL_BORDER_RADIUS = 8;
@@ -156,9 +157,11 @@ const [password,setPassword]= useState("");
                     number,
                    // type:,
                     uid: result.user.uid,
+                    favorites: new Array(81).fill(false)
                 })
-                .then(() => {
+                .then(async () => {
                     setUser(result)
+                    await AsyncStorage.setItem('number', number)
 
                     // eklendi, içeriye al.
                     // redux veya mobx'te user altına;

@@ -21,6 +21,9 @@ import {
     Text,
     LogBox
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { login, logOut, appointInfo } from "./redux/actions/loginActions";
+import Detail from "./screens/Detail";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,10 +34,27 @@ const Router = ({ }) => {
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.login.isLogin)
 
+    async function getLogged() {
+        const number = await AsyncStorage.getItem('number')
+        if (number) {
+            const user = (await firestore().collection('users').doc(number).get()).data();
+            dispatch(login({isLogin:true,name:user.name,uid:user.uid,number:user.number, favorites: user.favorites}))
+        } else {
+            dispatch(logOut({ isLogin: false }))
+        }
+    }
+
+    useEffect(function () {
+        getLogged()
+    }, [])
+
     function HomeStack() {
         return (
             <Stack.Navigator initialRouteName="HomeScreen">
                 <Stack.Screen component={HomeScreen} name="hava durumu" options={{headerTintColor:"white", headerStyle:{
+                    backgroundColor:"#ffb700"
+                }}}  />
+                 <Stack.Screen component={Detail} name="Detail" options={{headerTintColor:"white", headerStyle:{
                     backgroundColor:"#ffb700"
                 }}}  />
             </Stack.Navigator>
@@ -44,6 +64,9 @@ const Router = ({ }) => {
         return (
             <Stack.Navigator initialRouteName="FavoritesScreen">
                 <Stack.Screen component={FavoritesScreen} name="Favori" options={{headerTintColor:"white", headerStyle:{
+                    backgroundColor:"#ffb700"
+                }}}  />
+                <Stack.Screen component={Detail} name="Detail" options={{headerTintColor:"white", headerStyle:{
                     backgroundColor:"#ffb700"
                 }}}  />
             </Stack.Navigator>
@@ -137,7 +160,7 @@ const Router = ({ }) => {
 
     return (
         <NavigationContainer>
-            <TabNavigator />
+            {isLogin === null ? null : <TabNavigator />}
         </NavigationContainer>
     );
 }
