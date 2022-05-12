@@ -158,7 +158,7 @@ export default function LoginScreen({ navigation }) {
             await AsyncStorage.setItem('number', number)
             const user = (await firestore().collection('users').doc(number).get()).data();
              dispatch(login({isLogin:true,name:user.name,uid:user.uid,number:user.number}))
-            Alert.alert("HOŞGELDİNİZ",user.name)
+          //  Alert.alert("HOŞGELDİNİZ",user.name)
             navigation.navigate('hava durumu', {screen:"HomeScreen"})
  
 

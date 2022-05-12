@@ -11,8 +11,8 @@ export default function HomeScreen() {
     FontAwesome.loadFont();
     const dispatch = useDispatch();
     const state = useSelector((state) => state)
-  
-    const { isLogin, name, information, day, time } = state.login
+  const name = useSelector((state) => state.login.name)
+    const { isLogin,  information, day, time } = state.login
     const logout = () => {
         AsyncStorage.removeItem('number')
         dispatch(logOut({ isLogin: false }))
@@ -20,9 +20,15 @@ export default function HomeScreen() {
       }
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Kullanıcı Profili</Text>
+        {name&& 
+        <View style={{marginBottom:20}} > 
+        <Text style={{fontSize:20,fontWeight:"600"}} > {name} </Text>
+        </View>
+          
+        }
+      
             <Button
-            color="red"
+            color="blue"
             title="ÇIKIŞ YAP"
             onPress={() => logout()} />
         </SafeAreaView>
@@ -31,7 +37,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"#012a4a",
+      //  backgroundColor:"#012a4a",
         alignItems:"center",
         justifyContent:"center"
         
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         margin: 10,
         fontWeight: 'bold',
-        color: 'white'
+       // color: 'white'
     }
 
 });
